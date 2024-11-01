@@ -1,0 +1,23 @@
+server:
+  host: localhost
+  port: 9000
+
+services:
+  user_service:
+    host: user-service
+    port: 7070
+  medal_service:
+    host: medal-service
+    port: 8002
+  country_service:
+    host: country-service
+    port: 8003
+  event_service:
+    host: event-service
+    port: 8004
+  athlete_service:
+    host: athlete-service
+    port: 8005
+  live_service:
+    host: live-service
+    port: 8006

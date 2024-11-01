@@ -1,0 +1,172 @@
+version: '3.9'
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile  
+    ports:
+      - "9000:9000" 
+    environment:
+      - USER_SERVICE_HOST=user-service
+      - USER_SERVICE_PORT=8001
+      - MEDAL_SERVICE_HOST=medal-service
+      - MEDAL_SERVICE_PORT=8002
+      - COUNTRY_SERVICE_HOST=country-service
+      - COUNTRY_SERVICE_PORT=8003
+      - EVENT_SERVICE_HOST=event-service
+      - EVENT_SERVICE_PORT=8004
+      - ATHLETE_SERVICE_HOST=athlete-service
+      - ATHLETE_SERVICE_PORT=8005
+      - LIVE_SERVICE_HOST=live-service
+      - LIVE_SERVICE_PORT=8006
+    depends_on:
+      - user-service
+      - medal-service
+      - country-service
+      - event-service
+      - athlete-service
+      - live-service
+    networks:
+      - mynetwork
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8001:8001"
+    environment:
+      - USER_SERVICE_HOST=user-service
+      - USER_SERVICE_PORT=8001
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - mynetwork
+
+  medal-service:
+    build:
+      context: ./medal-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8002:8002"
+    environment:
+      - MEDAL_SERVICE_HOST=medal-service
+      - MEDAL_SERVICE_PORT=8002
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+  country-service:
+    build:
+      context: ./country-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8003:8003"
+    environment:
+      - COUNTRY_SERVICE_HOST=country-service
+      - COUNTRY_SERVICE_PORT=8003
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+  event-service:
+    build:
+      context: ./event-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8004:8004"
+    environment:
+      - EVENT_SERVICE_HOST=event-service
+      - EVENT_SERVICE_PORT=8004
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+  athlete-service:
+    build:
+      context: ./athlete-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8005:8005"
+    environment:
+      - ATHLETE_SERVICE_HOST=athlete-service
+      - ATHLETE_SERVICE_PORT=8005
+    depends_on:
+      - postgres
+    networks:
+      - mynetwork
+
+  live-service:
+    build:
+      context: ./live-service
+      dockerfile: Dockerfile  
+    ports:
+      - "8006:8006"
+    environment:
+      - LIVE_SERVICE_HOST=live-service
+      - LIVE_SERVICE_PORT=8006
+    depends_on:
+      - mongodb
+    networks:
+      - mynetwork
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4
+    restart: always
+    ports:
+      - "27018:27017"
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - mynetwork
+
+  redis:
+    container_name: redis
+    image: redis:7.2.5-alpine
+    restart: always
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - mynetwork
+
+  postgres:
+    container_name: postgresdb
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: 1
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - mynetwork
+
+
+volumes:
+  db-data:
+
+networks:
+  mynetwork:
+    driver: bridge

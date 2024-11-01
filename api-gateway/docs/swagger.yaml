@@ -1,0 +1,1349 @@
+basePath: /
+definitions:
+  models.Athlete:
+    properties:
+      country_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Country:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      flag:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.CreateAthleteRequest:
+    properties:
+      country_id:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+    type: object
+  models.CreateCountryRequest:
+    properties:
+      flag:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+    type: object
+  models.CreateEventRequest:
+    properties:
+      date:
+        type: string
+      end_time:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+      start_time:
+        type: string
+    type: object
+  models.CreateMedalRequest:
+    properties:
+      athlete_id:
+        type: string
+      country_id:
+        type: string
+      event_id:
+        type: string
+      type:
+        $ref: '#/definitions/models.MedalType'
+    type: object
+  models.CreateUserRequest:
+    properties:
+      password:
+        type: string
+      role:
+        type: string
+      username:
+        type: string
+    type: object
+  models.DeleteAthleteResponse:
+    properties:
+      status:
+        type: string
+    type: object
+  models.DeleteCountryResponse:
+    properties:
+      status:
+        type: string
+    type: object
+  models.DeleteEventResponse:
+    properties:
+      status:
+        type: string
+    type: object
+  models.DeleteMedalResponse:
+    properties:
+      success:
+        type: boolean
+    type: object
+  models.DeleteUserResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.Event:
+    properties:
+      created_at:
+        type: string
+      date:
+        type: string
+      deleted_at:
+        description: Optional field
+        type: integer
+      end_time:
+        type: string
+      id:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+      start_time:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.GetAthleteResponse:
+    properties:
+      country_id:
+        type: string
+      country_name:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.GetMedalByFilterRequest:
+    properties:
+      athlete_id:
+        type: string
+      country_id:
+        type: string
+      event_id:
+        type: string
+      type:
+        $ref: '#/definitions/models.MedalType'
+    type: object
+  models.GetMedalByFilterResponse:
+    properties:
+      medals:
+        items:
+          $ref: '#/definitions/models.Medal'
+        type: array
+    type: object
+  models.GetMedalByIdResponse:
+    properties:
+      athlete_id:
+        type: string
+      country_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      event_id:
+        type: string
+      id:
+        type: string
+      type:
+        $ref: '#/definitions/models.MedalType'
+      updated_at:
+        type: string
+    type: object
+  models.GetMedalsResponse:
+    properties:
+      medals:
+        items:
+          $ref: '#/definitions/models.Medal'
+        type: array
+    type: object
+  models.GetUserResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  models.GetUsersResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+      users:
+        items:
+          $ref: '#/definitions/models.User'
+        type: array
+    type: object
+  models.ListOfAthleteResponse:
+    properties:
+      athletes:
+        items:
+          $ref: '#/definitions/models.GetAthleteResponse'
+        type: array
+    type: object
+  models.ListOfCountryResponse:
+    properties:
+      countries:
+        items:
+          $ref: '#/definitions/models.Country'
+        type: array
+    type: object
+  models.ListOfEventResponse:
+    properties:
+      events:
+        items:
+          $ref: '#/definitions/models.Event'
+        type: array
+    type: object
+  models.LiveStream:
+    properties:
+      action:
+        additionalProperties:
+          type: string
+        type: object
+      event_id:
+        type: string
+      left_side:
+        type: string
+      right_side:
+        type: string
+      timestamp:
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.LoginResponse:
+    properties:
+      access_token:
+        type: string
+      message:
+        type: string
+      refresh_token:
+        type: string
+      success:
+        type: boolean
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  models.Medal:
+    properties:
+      athlete_id:
+        type: string
+      country_id:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      event_id:
+        type: string
+      id:
+        type: string
+      type:
+        $ref: '#/definitions/models.MedalType'
+      updated_at:
+        type: string
+    type: object
+  models.MedalType:
+    enum:
+    - 0
+    - 1
+    - 2
+    type: integer
+    x-enum-varnames:
+    - GOLD
+    - SILVER
+    - BRONZE
+  models.Message:
+    properties:
+      err:
+        type: string
+    type: object
+  models.RefreshTokenRequest:
+    properties:
+      refresh_token:
+        type: string
+    type: object
+  models.RefreshTokenResponse:
+    properties:
+      access_token:
+        type: string
+      message:
+        type: string
+      refresh_token:
+        type: string
+      success:
+        type: boolean
+    type: object
+  models.UpdateAthleteRequest:
+    properties:
+      country_id:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+    type: object
+  models.UpdateCountryRequest:
+    properties:
+      flag:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+    type: object
+  models.UpdateEventRequest:
+    properties:
+      date:
+        type: string
+      end_time:
+        type: string
+      id:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+      sport_type:
+        type: string
+      start_time:
+        type: string
+    type: object
+  models.UpdateMedalRequest:
+    properties:
+      athlete_id:
+        type: string
+      country_id:
+        type: string
+      event_id:
+        type: string
+      id:
+        type: string
+      type:
+        $ref: '#/definitions/models.MedalType'
+    type: object
+  models.UpdateUserRequest:
+    properties:
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  models.User:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: integer
+      id:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  models.UserFilter:
+    properties:
+      password:
+        type: string
+      role:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:9000
+info:
+  contact: {}
+  description: Api-gateway service
+  version: "1.0"
+paths:
+  /athletes:
+    get:
+      consumes:
+      - application/json
+      description: This method gets athletes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListOfAthleteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET ATHLETES
+      tags:
+      - ATHLETE
+    post:
+      consumes:
+      - application/json
+      description: This method creates athlete
+      parameters:
+      - description: Athlete
+        in: body
+        name: athlete
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateAthleteRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Athlete'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: CREATE ATHLETE
+      tags:
+      - ATHLETE
+  /athletes/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This method deletes an athlete
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteAthleteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: DELETE ATHLETE
+      tags:
+      - ATHLETE
+    get:
+      consumes:
+      - application/json
+      description: This method gets athlete
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetAthleteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET ATHLETE
+      tags:
+      - ATHLETE
+    put:
+      consumes:
+      - application/json
+      description: This method updates athlete
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Athlete
+        in: body
+        name: athlete
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateAthleteRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Athlete'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: UPDATE ATHLETE
+      tags:
+      - ATHLETE
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: This method logs in a user
+      parameters:
+      - description: User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: LOGIN USER
+      tags:
+      - AUTH
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: This method refreshes the authentication token
+      parameters:
+      - description: Token
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.RefreshTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RefreshTokenResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: REFRESH TOKEN
+      tags:
+      - AUTH
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: This method registers a new user
+      parameters:
+      - description: User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: REGISTER USER
+      tags:
+      - AUTH
+  /countries:
+    get:
+      consumes:
+      - application/json
+      description: This method gets a list of countries
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListOfCountryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET COUNTRIES
+      tags:
+      - COUNTRY
+    post:
+      consumes:
+      - application/json
+      description: This method creates a country
+      parameters:
+      - description: Country
+        in: body
+        name: country
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCountryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Country'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: CREATE COUNTRY
+      tags:
+      - COUNTRY
+  /countries/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This method deletes a country
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteCountryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: DELETE COUNTRY
+      tags:
+      - COUNTRY
+    get:
+      consumes:
+      - application/json
+      description: This method gets a country by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Country'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET COUNTRY
+      tags:
+      - COUNTRY
+    put:
+      consumes:
+      - application/json
+      description: This method updates a country
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Country
+        in: body
+        name: country
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCountryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Country'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: UPDATE COUNTRY
+      tags:
+      - COUNTRY
+  /events:
+    get:
+      consumes:
+      - application/json
+      description: This method gets a list of events
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListOfEventResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET EVENTS
+      tags:
+      - EVENT
+    post:
+      consumes:
+      - application/json
+      description: This method creates an event
+      parameters:
+      - description: Event
+        in: body
+        name: event
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateEventRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Event'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: CREATE EVENT
+      tags:
+      - EVENT
+  /events/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This method deletes an event
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteEventResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: DELETE EVENT
+      tags:
+      - EVENT
+    get:
+      consumes:
+      - application/json
+      description: This method gets an event by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Event'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET EVENT
+      tags:
+      - EVENT
+    put:
+      consumes:
+      - application/json
+      description: This method updates an event
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Event
+        in: body
+        name: event
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateEventRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Event'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: UPDATE EVENT
+      tags:
+      - EVENT
+  /live/{eventId}:
+    get:
+      consumes:
+      - application/json
+      description: This method retrieves a live stream by event ID
+      parameters:
+      - description: Event ID
+        in: path
+        name: eventId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LiveStream'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: Get Live Stream by Event ID
+      tags:
+      - Live Stream
+  /medals:
+    get:
+      consumes:
+      - application/json
+      description: This method gets all medals
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetMedalsResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET MEDALS
+      tags:
+      - MEDAL
+    post:
+      consumes:
+      - application/json
+      description: This method creates a medal
+      parameters:
+      - description: Medal
+        in: body
+        name: medal
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateMedalRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Medal'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: CREATE MEDAL
+      tags:
+      - MEDAL
+  /medals/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This method deletes a medal
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteMedalResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: DELETE MEDAL
+      tags:
+      - MEDAL
+    get:
+      consumes:
+      - application/json
+      description: This method gets a medal by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetMedalByIdResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET MEDAL BY ID
+      tags:
+      - MEDAL
+    put:
+      consumes:
+      - application/json
+      description: This method updates a medal
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Medal
+        in: body
+        name: medal
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateMedalRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Medal'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: UPDATE MEDAL
+      tags:
+      - MEDAL
+  /medals/filter:
+    get:
+      consumes:
+      - application/json
+      description: This method gets medals by filter
+      parameters:
+      - description: Filter
+        in: body
+        name: filter
+        required: true
+        schema:
+          $ref: '#/definitions/models.GetMedalByFilterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetMedalByFilterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET MEDALS BY FILTER
+      tags:
+      - MEDAL
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: This method gets all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetUsersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET USERS
+      tags:
+      - USER
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This method deletes a user
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DeleteUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: DELETE USER
+      tags:
+      - USER
+    get:
+      consumes:
+      - application/json
+      description: This method gets a user by ID
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET USER
+      tags:
+      - USER
+    put:
+      consumes:
+      - application/json
+      description: This method updates a user
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: UPDATE USER
+      tags:
+      - USER
+  /users/filter:
+    post:
+      consumes:
+      - application/json
+      description: This method gets users by filter
+      parameters:
+      - description: Filter
+        in: body
+        name: filter
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserFilter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GetUsersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Message'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Message'
+      security:
+      - BearerAuth: []
+      summary: GET USERS BY FILTER
+      tags:
+      - USER
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authourization
+    type: apiKey
+swagger: "2.0"

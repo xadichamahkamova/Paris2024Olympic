@@ -1,0 +1,14 @@
+server:
+  host: user-service
+  port: 8001
+
+redis:
+  host: redis
+  port: 6379
+
+postgres:
+  host: postgresdb
+  port: 5432
+  user: postgres
+  password: 1
+  name: userdb
